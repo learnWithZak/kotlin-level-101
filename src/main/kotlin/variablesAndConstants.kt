@@ -7,4 +7,10 @@ fun main() {
     var amount: Double = 1500.00
     amount = 2000.00
     amount = 200_000_000.00
+
+    val a: Double = 5.6
+    val tmp: Int = 1000
+
+    val ageOfPerson: Int = 18
+    val minimumValueOfAmount: Double = 15.00
 }
