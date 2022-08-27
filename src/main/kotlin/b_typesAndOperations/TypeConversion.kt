@@ -1,4 +1,4 @@
-package typesAndOperations
+package b_typesAndOperations
 
 fun main() {
     var integer: Int = 100

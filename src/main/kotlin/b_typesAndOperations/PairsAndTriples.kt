@@ -1,4 +1,4 @@
-package typesAndOperations
+package b_typesAndOperations
 
 fun main() {
     val coordinates: Pair<Int, Int> = Pair(2, 3)
