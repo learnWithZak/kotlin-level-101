@@ -64,4 +64,17 @@ fun main() {
     }
 
     println(timeOfDay)
+
+    /**
+     * Short-circuiting
+     */
+
+    val name = "A name"
+    if (1 > 2 && name == "Gorge Bool") {
+        //... Kotlin checks only the first condition
+    }
+
+    if (1 < 2 || name == "Hassan 2") {
+        //...Kotlin will not execute the check of name, 1 < 2 is always true
+    }
 }
