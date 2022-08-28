@@ -77,4 +77,19 @@ fun main() {
     if (1 < 2 || name == "Hassan 2") {
         //...Kotlin will not execute the check of name, 1 < 2 is always true
     }
+
+    /**
+     * Encapsulating variables (scope)
+     */
+
+    var hoursWorked = 45
+    var total = 0
+    if (hoursWorked > 40) {
+        val hoursOver40 = hoursWorked - 40
+        total += 50 * hoursOver40
+        hoursWorked -= hoursOver40
+    }
+    total += 25 * hoursWorked
+    println(total)
+
 }
