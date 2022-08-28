@@ -44,4 +44,24 @@ fun main() {
     val max2 = if (a2 > b2) a2 else b2
     println(min2)
     println(max2)
+
+    /**
+     * The else-if expression (THE ORDER MATTERS)
+     */
+    val hourOfDay = 12
+    val timeOfDay = if (hourOfDay < 6) {
+        "Early morning"
+    } else if (hourOfDay < 12) {
+        "Morning"
+    } else if (hourOfDay < 17) {
+        "Afternoon"
+    } else if (hourOfDay < 20) {
+        "Evening"
+    } else if (hourOfDay < 24) {
+        "Late evening"
+    } else {
+        "INVALID HOUR!"
+    }
+
+    println(timeOfDay)
 }
