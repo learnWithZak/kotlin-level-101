@@ -92,4 +92,17 @@ fun main() {
     total += 25 * hoursWorked
     println(total)
 
+    /**
+     * Mini-exercises
+     */
+    val myAge = 26
+    if (myAge >= 13 && myAge <= 19) {
+        println("Teenager")
+    } else {
+        println("Not a teenager")
+    }
+
+    val answer = if(myAge >= 13 && myAge <= 19) "Teenager" else "Not a teenager"
+    println(answer)
+
 }
