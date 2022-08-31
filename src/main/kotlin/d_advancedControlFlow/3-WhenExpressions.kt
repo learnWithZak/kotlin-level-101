@@ -105,4 +105,49 @@ fun main() {
         else -> "Invalid"
     }
     println("${pair.first} is $lifeStage")
+
+    /**
+     * Challenges
+     */
+    var sum = 0
+    for(i in 0..5) {
+        sum += i
+    }
+    println(sum)
+
+    var aLotOfAs = ""
+    while (aLotOfAs.length < 10) {
+        aLotOfAs += "a"
+    }
+    println(aLotOfAs.count())
+
+    println("------------")
+    //val (x1, y1, z1) = Triple(1, 5, 0)
+    //val (x1, y1, z1) = Triple(2, 2, 2)
+    //val (x1, y1, z1) = Triple(3, 0, 1)
+    val (x1, y1, z1) = Triple(3, 2, 5)
+    //val (x1, y1, z1) = Triple(0, 2, 4)
+    when {
+        x1 == y1 && y1 == z1 -> println("x = y = z")
+        z1 == 0 -> println("On the x/y plane")
+        y1 == 0 -> println("On the x/z plane")
+        x1 == 0 -> println("On the y/z plane")
+        else -> println("Nothing special")
+    }
+
+    var a = 0..0
+    println("$a is empty: ${a.isEmpty()}")
+    a = 0 until 0
+    println("$a is empty: ${a.isEmpty()}")
+
+    var down = 10
+    while (down >= 0) {
+        println(down)
+        down --
+    }
+    println("---------")
+    for (i in 0..10) {
+        if (i == 0) println(i.toFloat())
+        else println(i.toFloat() / 10)
+    }
 }
