@@ -18,8 +18,12 @@ fun printMyName() {
     val calculatedFullName = calculateFullName("Zakaria", "Afir")
     println("my full name (${calculatedFullName.first}) length is: ${calculatedFullName.second}")
 
-    var function = ::add
-    println(function.invoke(2, 5))
+    var function: (Int, Int) -> Int = ::add
+    println(function(2, 5))
+    function = ::subtract
+    println(function(2, 5))
+
+    printResult(::add, 2, 5)
 }
 
 /**
@@ -107,4 +111,13 @@ fun calculateFullName(firstName: String, lastName: String): Pair<String, Int> {
 
 fun add(a: Int, b: Int): Int {
     return a + b
+}
+
+fun subtract(a: Int, b: Int): Int {
+    return a - b
+}
+
+fun printResult(function: (Int, Int) -> Int, a: Int, b: Int) {
+    val result = function(a, b)
+    println(result)
 }
