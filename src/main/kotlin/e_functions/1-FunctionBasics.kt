@@ -1,5 +1,7 @@
 package e_functions
 
+import kotlin.math.sqrt
+
 fun main() {
     printMyName()
 }
@@ -24,6 +26,20 @@ fun printMyName() {
     println(function(2, 5))
 
     printResult(::add, 2, 5)
+
+    println(isPrime(6)) // false
+    println(isPrime(13)) // true
+    println(isPrime(8893)) // true
+
+    println(fibonacci(1))  // = 1
+    println(fibonacci(2))  // = 1
+    println(fibonacci(3))  // = 2
+    println(fibonacci(4))  // = 3
+    println(fibonacci(5))  // = 5
+    println(fibonacci(6))  // = 8
+    println(fibonacci(7))  // = 13
+    println(fibonacci(10)) // = 55
+
 }
 
 /**
@@ -120,4 +136,35 @@ fun subtract(a: Int, b: Int): Int {
 fun printResult(function: (Int, Int) -> Int, a: Int, b: Int) {
     val result = function(a, b)
     println(result)
+}
+
+/**
+ * Challenges
+ */
+
+// 1 - it's prime time
+fun isNumberDivisible(number: Int, divisor: Int): Boolean {
+    return number % divisor == 0
+}
+
+fun isPrime(number: Int): Boolean {
+    if (number <= 0)
+        return false
+
+    if (number <= 3)
+        return true
+
+    for (counter in 2 .. sqrt(number.toDouble()).toInt()) {
+        if (isNumberDivisible(number, counter)) {
+            return false
+        }
+    }
+    return true
+}
+
+// 2 - recursive functions
+fun fibonacci(number: Int): Int {
+    if (number <= 0) return 0
+    if (number == 1 || number == 2) return 1
+    return fibonacci(number - 1) + fibonacci(number - 2)
 }
