@@ -21,10 +21,47 @@ fun main() {
      * Mini-exercises
      */
     var myFavoriteSong: String?
-    myFavoriteSong = null // I have no favorite song now!
-
+    //myFavoriteSong = null // I have no favorite song now!
+    myFavoriteSong = "Manzak a winou - Oudaden"
     var parseInt = "10".toIntOrNull()
     println(parseInt)
     parseInt = "dog".toIntOrNull()
     println(parseInt)
+
+    /**
+     * Checking for null
+     */
+    val result: Int? = 30
+    println(result)
+    // println(result + 1) // not allowed because result is nullable
+
+    /**
+     * Not-null assertion operator
+     */
+    var authorName: String? = "Sefrioui"
+    var authorAge: Int? = 65
+    var ageAfterBirthday = authorAge!! + 1 // look inside the box and take out the value
+    println("After their next birthday, the author will be $ageAfterBirthday")
+
+    /**
+     * Smart cast
+     */
+    var nonNullableAuthor: String
+    var nullableAuthor: String?
+    if (authorName != null) {
+        nonNullableAuthor = authorName
+    } else {
+        nullableAuthor = authorName
+    }
+
+    /**
+     * Mini-exercises
+     */
+
+    if (myFavoriteSong != null) {
+        println("The value of my favorite song is $myFavoriteSong")
+    } else {
+        println("I don't have a favorite song")
+    }
+
 }
