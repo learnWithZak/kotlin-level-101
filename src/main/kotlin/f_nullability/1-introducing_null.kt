@@ -64,4 +64,22 @@ fun main() {
         println("I don't have a favorite song")
     }
 
+    /**
+     * Safe calls
+     */
+    var nameLength = authorName?.length
+    println("Author's name has length $nameLength.")
+    val nameLengthPlus5 = authorName?.length?.plus(5)
+    println("Author's name length plus 5 is $nameLengthPlus5")
+    // authorName = null
+    val nameLengthChainCall = authorName?.length?.plus(5)?.plus(3)?.minus(4)
+    println(nameLengthChainCall)
+
+    /**
+     * The let() function
+     */
+    authorName?.let {
+        nonNullableAuthor = authorName
+        nameLength = authorName.length
+    }
 }
