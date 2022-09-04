@@ -36,7 +36,7 @@ fun main() {
     // println(result + 1) // not allowed because result is nullable
 
     /**
-     * Not-null assertion operator
+     * Not-null assertion operator --> could produce runtime error
      */
     var authorName: String? = "Sefrioui"
     var authorAge: Int? = 65
@@ -93,4 +93,36 @@ fun main() {
     nullableInt = null
     mustHaveResult = nullableInt ?: 0
     println(mustHaveResult)
+
+    /**
+     * Challenges
+     */
+
+    // divide and conquer
+    fun divideIfWhole(number: Int, divisor: Int): Int? {
+        return if (number % divisor == 0) {
+            number / divisor
+        }
+        else {
+            null
+        }
+    }
+
+    var divisionResult = divideIfWhole(10, 2)
+    // printResult(divisionResult)
+    printRefactoredResult(divisionResult)
+    divisionResult = divideIfWhole(10, 3)
+    // printResult(divisionResult)
+    printRefactoredResult(divisionResult)
+
+    // Refactor
+}
+
+private fun printResult(divisionResult: Int?) {
+    if (divisionResult != null) println("Yep, it divides $divisionResult times") else println("No divisible :(")
+}
+
+private fun printRefactoredResult(divisionResult: Int?) {
+    val howManyTime = divisionResult ?: 0
+    println("It divides $howManyTime times.")
 }
