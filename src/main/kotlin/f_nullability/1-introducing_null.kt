@@ -82,4 +82,15 @@ fun main() {
         nonNullableAuthor = authorName
         nameLength = authorName.length
     }
+
+    /**
+     * Elvis operator
+     */
+    var nullableInt: Int? = 10
+    // var mustHaveResult = if (nullableInt == null) 0 else nullableInt
+    var mustHaveResult = nullableInt ?: 0
+    println(mustHaveResult)
+    nullableInt = null
+    mustHaveResult = nullableInt ?: 0
+    println(mustHaveResult)
 }
