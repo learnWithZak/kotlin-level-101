@@ -1,12 +1,12 @@
 package j_arraysAndLists
 
+val players = mutableListOf("Alice", "Bob", "Cindy", "Dan")
 fun main() {
 
     /**
      * Using properties and methods
      */
 
-    val players = mutableListOf("Alice", "Bob", "Zak", "Alex")
     println(players.isEmpty())
     if (players.size >= 2) {
         println("let's start the game")
