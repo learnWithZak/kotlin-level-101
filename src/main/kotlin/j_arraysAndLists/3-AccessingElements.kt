@@ -1,7 +1,5 @@
 package j_arraysAndLists
 
-import kotlin.math.max
-
 fun main() {
 
     /**
@@ -50,4 +48,17 @@ fun main() {
     // to get the next 2 players
     val upcomingPlayersSlice = players.slice(1..2)
     println(upcomingPlayersSlice.joinToString())
+
+    /**
+     * Checking for an element
+     */
+    fun isEliminated(player: String): Boolean {
+        return player !in players
+    }
+
+    println(isEliminated("Bob"))
+    println(isEliminated("Toto"))
+
+    val combineSliceWithContains = players.slice(1..3).contains("Alice")
+    println(combineSliceWithContains)
 }
