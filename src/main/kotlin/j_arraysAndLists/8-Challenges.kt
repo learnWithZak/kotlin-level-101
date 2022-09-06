@@ -1,7 +1,6 @@
 package j_arraysAndLists
 
 import java.util.*
-import javax.lang.model.type.ArrayType
 
 fun main() {
     // val array1 = Array<Int>()
@@ -51,4 +50,48 @@ fun main() {
     }
 
     println(reverse(arrayOf(1,2,3,4,5)).joinToString())
+
+    fun rand(from: Int, to: Int) : Int {
+        return Random().nextInt(to - from) + from
+    }
+    println(rand(0, 5))
+
+    fun randomized(array: Array<Int>): Array<Int> {
+        val shuffledArray = Array(array.size) {0}
+        val chosenPositions = mutableListOf<Int>()
+        var random: Int
+        for ( index in array.indices) {
+            while (true) {
+                random = rand(0, array.size)
+                if (random !in chosenPositions) {
+                    chosenPositions.add(random)
+                    break
+                }
+            }
+            shuffledArray[index] = array[random]
+        }
+        return shuffledArray
+    }
+
+    println(randomized(arrayOf(1,5,6,7)).joinToString())
+
+    fun minMax(numbers: Array<Int>): Pair<Int, Int>? {
+        var min = 0
+        var max = 0
+        return if (numbers.isEmpty())
+            null
+        else {
+            for (number in numbers) {
+                if (number > max) {
+                    max = number
+                }
+                if (number < min) {
+                    min = number
+                }
+            }
+            Pair(min, max)
+        }
+    }
+
+    println(minMax(arrayOf(4, -54, -300, 23, 55666, 22, 1, -2223, 33, 11, 500000)))
 }
