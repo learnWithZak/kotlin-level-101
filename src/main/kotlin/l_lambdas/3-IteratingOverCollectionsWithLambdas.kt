@@ -82,4 +82,64 @@ fun main() {
         it.key
     }
     println(newList)
+
+    /**
+     * Challenges
+     */
+
+    fun repeatTask(times: Int, action: () -> Unit) {
+        for(i in 0 until times) {
+            action()
+        }
+    }
+
+    repeatTask(10) {
+        println("Kotlin is a great language!")
+    }
+
+    fun mathSum(length: Int, series: (Int) -> Int): Int {
+        var result = 0
+        for (i in 1 .. length) {
+            result += series(i)
+        }
+        return result
+    }
+
+    val squares = mathSum(10) {
+        it * it
+    }
+    println(squares)
+
+    fun fib(number: Int): Int {
+        if (number <= 0) return 0
+        if (number == 1 || number == 2) return 1
+        return fib (number - 1) + fib(number - 2)
+    }
+
+    val fib = mathSum(10, ::fib)
+    println(fib)
+
+
+    val appRatings = mapOf(
+        "Calendar Pro" to arrayOf(1, 5, 5, 4, 2, 1, 5, 4),
+        "The Messenger" to arrayOf(5, 4, 2, 5, 4, 1, 1, 2),
+        "Socialise" to arrayOf(2, 1, 2, 2, 1, 2, 4, 2)
+    )
+
+    val averageRatings = mutableMapOf<String, Double>()
+
+    appRatings.forEach {
+        val total = it.value.reduce { acc, i ->
+            (acc + i)
+        }
+        averageRatings[it.key] = total.toDouble() / it.value.size
+    }
+    println(averageRatings)
+
+    val greaterThanThree = averageRatings.filter {
+        it.value > 3
+    }.map {
+        it.key
+    }
+    println(greaterThanThree)
 }
