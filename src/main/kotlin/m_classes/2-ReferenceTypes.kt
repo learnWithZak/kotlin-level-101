@@ -89,4 +89,51 @@ fun main() {
 
     println(memberOf(john, group1))
     println(memberOf(john, group2))
+
+    /**
+     * Methods and mutability
+     */
+    class Grade(
+        val letter: String,
+        val points: Double,
+        val credits: Double
+    )
+
+    class Student(
+        val firstName: String,
+        val lastName: String,
+        val grades: MutableList<Grade> = mutableListOf(),
+        var credits: Double = 0.0
+    ) {
+        val gpa: Double
+            get() {
+            var gpa = 0.0
+            for (grade in grades) {
+                gpa += grade.points / credits
+            }
+            return gpa
+        }
+        fun recordGrade(grade: Grade) {
+            grades.add(grade)
+            credits += grade.credits
+            println(credits)
+        }
+    }
+
+    val jane = Student(firstName = "Jane", lastName = "Appleseed")
+    val history = Grade(letter = "B", points = 9.0, credits = 3.0)
+    val math = Grade(letter = "A", points = 16.0, credits = 4.0)
+
+    jane.recordGrade(history)
+    jane.recordGrade(math)
+
+    /**
+     * Mutability and constants
+     */
+    // jane = Student("toto", "titi") //build error
+
+    /**
+     * Mini-exercise
+     */
+    println(jane.gpa.toFloat())
 }
