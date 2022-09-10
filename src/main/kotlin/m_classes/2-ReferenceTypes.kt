@@ -116,13 +116,12 @@ fun main() {
         fun recordGrade(grade: Grade) {
             grades.add(grade)
             credits += grade.credits
-            println(credits)
         }
     }
 
     val jane = Student(firstName = "Jane", lastName = "Appleseed")
     val history = Grade(letter = "B", points = 9.0, credits = 3.0)
-    val math = Grade(letter = "A", points = 16.0, credits = 4.0)
+    var math = Grade(letter = "A", points = 16.0, credits = 4.0)
 
     jane.recordGrade(history)
     jane.recordGrade(math)
@@ -136,4 +135,13 @@ fun main() {
      * Mini-exercise
      */
     println(jane.gpa.toFloat())
+
+    /**
+     * Understanding state and side effects
+     */
+    println(jane.credits)
+    // the teacher made a mistake, math has 5 credits
+    math = Grade(letter = "A", points = 20.0, credits = 5.0)
+    jane.recordGrade(math)
+    println(jane.credits) // 12 instead of 8 !
 }
