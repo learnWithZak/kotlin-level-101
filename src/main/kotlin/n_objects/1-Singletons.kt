@@ -10,6 +10,15 @@ data class Student(
     val lastName: String
 ) {
     val fullName = "$lastName, $firstName"
+    companion object {
+        var total = 0
+        fun numberOfStudents(): Int {
+            return total
+        }
+    }
+    init {
+        total++
+    }
 }
 
 fun main() {
@@ -20,6 +29,7 @@ fun main() {
     StudentRegistry.addStudent(albert)
     StudentRegistry.addStudent(emmy)
     StudentRegistry.listAllStudents()
+    println(Student.numberOfStudents())
 }
 
 object StudentRegistry {
