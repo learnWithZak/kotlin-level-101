@@ -1,5 +1,6 @@
 package o_properties
 
+import kotlin.math.PI
 import kotlin.math.atan
 import kotlin.properties.Delegates
 
@@ -38,6 +39,19 @@ fun main() {
     println(circle.circumference)
     circle.radius = 2.0
     println(circle.circumference)
+
+    /**
+     * Mini-exercise
+     */
+
+    println("---------")
+    val circle2 = Circle2(5.0)
+    println(circle2.area)
+    circle2.radius = 2.0
+    println(circle2.area)
+    circle2.radius = 5000.0
+    println(circle2.area)
+    // got the same value because area is calculated only the first time
 }
 
 class DelegatedLevel(val id: Int, var boss: String) {
@@ -77,4 +91,17 @@ class Circle(var radius: Double = 0.0) {
     }
     val circumference: Double
         get() = pi * radius * 2
+}
+
+/**
+ * Mini exercise
+ */
+
+class Circle2(var radius: Double = 0.0) {
+    val circumference: Double
+        get() = PI * radius * 2
+
+    val area: Double by lazy {
+        PI * radius * radius
+    }
 }
