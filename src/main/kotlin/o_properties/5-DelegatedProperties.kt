@@ -1,5 +1,6 @@
 package o_properties
 
+import kotlin.math.atan
 import kotlin.properties.Delegates
 
 fun main() {
@@ -27,6 +28,16 @@ fun main() {
     println(light.current)
     light.current = 70
     println(light.current)
+
+    /**
+     * Lazy properties
+     */
+
+    println("---------")
+    val circle = Circle(5.0)
+    println(circle.circumference)
+    circle.radius = 2.0
+    println(circle.circumference)
 }
 
 class DelegatedLevel(val id: Int, var boss: String) {
@@ -59,4 +70,11 @@ class LightBulb {
             true
         }
     }
+}
+class Circle(var radius: Double = 0.0) {
+    val pi: Double by lazy {
+        ((4.0 * atan(1.0 / 5.0)) - atan(1.0 / 239.0)) * 4.0
+    }
+    val circumference: Double
+        get() = pi * radius * 2
 }
