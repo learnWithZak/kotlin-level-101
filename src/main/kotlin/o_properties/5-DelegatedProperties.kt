@@ -18,6 +18,15 @@ fun main() {
     /**
      * Limiting a variable
      */
+
+    println("---------")
+    val light = LightBulb()
+    light.current = 50
+    println(light.current)
+    light.current = 39
+    println(light.current)
+    light.current = 70
+    println(light.current)
 }
 
 class DelegatedLevel(val id: Int, var boss: String) {
@@ -32,5 +41,22 @@ class DelegatedLevel(val id: Int, var boss: String) {
             highestLevel = id
         }
         println("$old -> $new")
+    }
+}
+
+class LightBulb {
+
+    companion object {
+        const val maxCurrent = 40
+    }
+
+    var current: Int by Delegates.vetoable(0) {
+        _, _, new ->
+        if (new > maxCurrent) {
+            println("Current too high, falling back to previous setting.")
+            false
+        } else {
+            true
+        }
     }
 }
