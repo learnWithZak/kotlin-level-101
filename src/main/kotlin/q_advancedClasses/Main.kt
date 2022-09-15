@@ -83,6 +83,12 @@ fun main() {
     dom.recordGrade(physics)
     dom.recordGrade(chemistry)
     println(dom.isEligible)
+
+    /**
+     * Abstract classes
+     */
+    val human = Human(birthdate = "1/1/2020")
+    // val mammal = Mammal("1/1/2020") // cannot create an instance of abstract class
 }
 
 open class BandMember(
@@ -136,4 +142,21 @@ open class AnotherStudent(firstName: String, lastName: String): Person(firstName
 class AnotherStudentAthlete(firstName: String, lastName: String): AnotherStudent(firstName, lastName) {
     override fun recordGrade(grade: Grade) {}
     //override fun recordTardy() {} // error! recordTardy is final
+}
+
+/**
+ * Abstract classes
+ */
+abstract class Mammal(val birthdate: String) {
+    abstract fun consumeFood()
+}
+
+class Human(birthdate: String): Mammal(birthdate) {
+    override fun consumeFood() {
+        TODO("Not yet implemented")
+    }
+
+    fun createBirthCertificate() {
+
+    }
 }
