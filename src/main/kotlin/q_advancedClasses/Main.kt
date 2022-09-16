@@ -110,6 +110,13 @@ fun main() {
     println(size(circle1))
     println(size(square2))
 
+    /**
+     * Nested and inner class
+     */
+
+    val mazda = Car("mazda")
+    val mazdaEngine = mazda.Engine("rotary")
+    println(mazdaEngine)
 
 }
 
@@ -217,4 +224,17 @@ class Circle2: Shape2 {
         //...
     }
 
+}
+
+/**
+ * Nested and inner classes
+ */
+
+class Car(val carName: String) {
+    inner class Engine(val engineName: String) { // Nested class
+        override fun toString(): String {
+            // return "$engineName in a $carName" // error: cannot access to $carName, add inner to access to it
+            return "$engineName in a $carName"
+        }
+    }
 }
