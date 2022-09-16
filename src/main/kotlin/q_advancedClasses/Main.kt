@@ -127,6 +127,15 @@ fun main() {
     privilegedUser.addPrivilege(privilege)
     println(privilegedUser.about())
 
+    /**
+     * When and why to subclass
+     */
+    val team = Team()
+    team.players = mutableListOf(
+        // Student("toto", "titi"),
+        StudentAthlete("titi", "tito")
+        )
+
 }
 
 open class BandMember(
@@ -277,3 +286,40 @@ class PrivilegedUser(userName: String, id: String, age: Int): User(userName, id,
         return "$userName, $age"
     }
 }
+
+/**
+ * When and why to subclass
+ */
+
+// single responsibility
+data class Sport(val name: String)
+
+class Student2(firstName: String, lastName: String): Person(firstName, lastName) {
+    val grades = mutableListOf<Grade>()
+    val sports = mutableListOf<Sport>()
+}
+
+// strong types
+class Team {
+    var players = mutableListOf<StudentAthlete>()
+
+    val isEligible: Boolean
+        get() {
+            for (player in players) {
+                if (!player.isEligible) return false
+            }
+            return true
+        }
+}
+
+// shared base classes
+
+open class Button {
+    fun press() {
+
+    }
+}
+
+class Image
+class ImageButton(val image: Image): Button()
+class TextButton(val text: String): Button()
