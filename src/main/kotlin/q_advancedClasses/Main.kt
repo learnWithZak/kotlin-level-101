@@ -136,6 +136,14 @@ fun main() {
         StudentAthlete("titi", "tito")
         )
 
+    /**
+     * Challenges
+     */
+
+    val c = C()
+    val a = A()
+    println(c as A)
+    println(a as? C)
 }
 
 open class BandMember(
@@ -161,7 +169,7 @@ fun phoneBookName(person: Person): String {
     return "${person.lastName}, ${person.firstName}"
 }
 
-class StudentAthlete(
+open class StudentAthlete(
     firstName: String,
     lastName: String
 ): Student(firstName, lastName) {
@@ -323,3 +331,37 @@ open class Button {
 class Image
 class ImageButton(val image: Image): Button()
 class TextButton(val text: String): Button()
+
+/**
+ * Challenges
+ */
+
+open class A {
+    init {
+        println("I'm <A>!")
+    }
+}
+open class B: A() {
+    init {
+        println("I'm <B>!")
+    }
+}
+class C: B() {
+    init {
+        println("I'm <C>!")
+    }
+}
+
+class StudentBaseballPlayer(firstName: String,
+                            lastName: String,
+                            position: Int,
+                            number: Int,
+                            battingAverage: Double): StudentAthlete(firstName, lastName) {
+
+}
+
+sealed class Resource {
+    data class Success(val data: String): Resource()
+    data class Error(val error: String): Resource()
+    object Loading: Resource()
+}
