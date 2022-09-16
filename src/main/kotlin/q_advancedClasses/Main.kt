@@ -118,6 +118,15 @@ fun main() {
     val mazdaEngine = mazda.Engine("rotary")
     println(mazdaEngine)
 
+    /**
+     * Visibility modifiers
+     */
+
+    val privilegedUser = PrivilegedUser(userName = "zak", id = "1234", age = 26)
+    val privilege = Privilege(1, "invisibility")
+    privilegedUser.addPrivilege(privilege)
+    println(privilegedUser.about())
+
 }
 
 open class BandMember(
@@ -236,5 +245,35 @@ class Car(val carName: String) {
             // return "$engineName in a $carName" // error: cannot access to $carName, add inner to access to it
             return "$engineName in a $carName"
         }
+    }
+}
+
+/**
+ * Visibility modifiers
+ */
+
+data class Privilege(val id: Int, val name: String)
+open class User(
+    val userName: String,
+    private val id: String,
+    protected var age: Int
+)
+
+class PrivilegedUser(userName: String, id: String, age: Int): User(userName, id, age) {
+    private val privileges = mutableListOf<Privilege>()
+
+    fun addPrivilege(privilege: Privilege) {
+        privileges.add(privilege)
+    }
+
+    fun hasPrivilege(id: Int): Boolean {
+        return privileges.map {
+            it.id
+        }.contains(id)
+    }
+
+    fun about(): String {
+        // return "$userName, $id"
+        return "$userName, $age"
     }
 }
