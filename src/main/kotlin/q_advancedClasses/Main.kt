@@ -1,5 +1,7 @@
 package q_advancedClasses
 
+import java.awt.Color
+
 open class Person(var firstName: String, var lastName: String) {
     fun fullName() = "$firstName $lastName"
 }
@@ -187,4 +189,32 @@ class Human(birthdate: String): Mammal(birthdate) {
 sealed class Shape {
     data class Circle(val radius: Int): Shape()
     data class Square(val sideLength: Int): Shape()
+}
+
+/**
+ * Secondary constructor
+ */
+
+class Person2 constructor(var firstName: String, var lastName: String) {
+    fun fullName() = "$firstName $lastName"
+}
+
+open class Shape2 {
+    constructor(size: Int) {
+        println("the size is $size")
+    }
+
+    constructor(size: Int, color: Color): this(size) {
+        println("the color is $color")
+    }
+}
+
+class Circle2: Shape2 {
+    constructor(size: Int): super(size) {
+        //...
+    }
+    constructor(size: Int, color: Color): super(size, color) {
+        //...
+    }
+
 }
