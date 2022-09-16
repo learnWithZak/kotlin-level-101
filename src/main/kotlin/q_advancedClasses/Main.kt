@@ -89,6 +89,26 @@ fun main() {
      */
     val human = Human(birthdate = "1/1/2020")
     // val mammal = Mammal("1/1/2020") // cannot create an instance of abstract class
+
+    /**
+     * Sealed class
+     */
+    val circle1 = Shape.Circle(4)
+    val circle2 = Shape.Circle(2)
+    val square1 = Shape.Square(4)
+    val square2 = Shape.Square(2)
+
+    fun size(shape: Shape): Int {
+        return when (shape) {
+            is Shape.Circle -> shape.radius
+            is Shape.Square -> shape.sideLength
+        }
+    }
+
+    println(size(circle1))
+    println(size(square2))
+
+
 }
 
 open class BandMember(
@@ -159,4 +179,12 @@ class Human(birthdate: String): Mammal(birthdate) {
     fun createBirthCertificate() {
 
     }
+}
+
+/**
+ * Sealed class
+ */
+sealed class Shape {
+    data class Circle(val radius: Int): Shape()
+    data class Square(val sideLength: Int): Shape()
 }
