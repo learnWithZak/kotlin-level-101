@@ -57,4 +57,15 @@ fun main() {
     val secondDay = DayOfTheWeek.Friday
     val daysUntil = today.daysUntil(secondDay)
     println("It is $today. $isWeekend. There are $daysUntil days until $secondDay.")
+
+    when (today) {
+        DayOfTheWeek.Monday -> println("I don't care if $today's blue")
+        DayOfTheWeek.Tuesday -> println("$today's gray")
+        DayOfTheWeek.Wednesday -> println("And $today, too")
+        DayOfTheWeek.Thursday -> println("$today, I don't care 'bout you")
+        DayOfTheWeek.Friday -> println("It's $today, I'm in love")
+        DayOfTheWeek.Saturday -> println("$today, Wait...")
+        DayOfTheWeek.Sunday -> println("$today always comes too late")
+    }
+
 }
