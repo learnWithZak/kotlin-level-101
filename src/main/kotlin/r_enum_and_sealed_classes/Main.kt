@@ -2,6 +2,37 @@ package r_enum_and_sealed_classes
 
 import java.util.Calendar
 
+sealed class AcceptedCurrency {
+    abstract val valueInDollar: Float
+    var amount: Float = 0.0f
+
+    class Dollar: AcceptedCurrency() {
+        override val valueInDollar: Float
+            get() = 1.0f
+
+    }
+    class Euro: AcceptedCurrency() {
+        override val valueInDollar: Float
+            get() = 1.25f
+
+    }
+    class Crypto: AcceptedCurrency() {
+        override val valueInDollar: Float
+            get() = 2534.99f
+
+    }
+
+    val name: String
+        get() = when (this) {
+            is Euro -> "Euro"
+            is Dollar -> "Dollars"
+            is Crypto -> "NerdCoin"
+        }
+
+    fun totalValueInDollars(): Float {
+        return amount * valueInDollar
+    }
+}
 enum class DayOfTheWeek(val isWeekend: Boolean = false) {
     Monday,
     Tuesday,
@@ -68,4 +99,11 @@ fun main() {
         DayOfTheWeek.Sunday -> println("$today always comes too late")
     }
 
+    /**
+     * Sealed vs Enum
+     */
+    val currency = AcceptedCurrency.Crypto()
+    println("You've got some ${currency.name}")
+    currency.amount = .27541f
+    println("${currency.amount} of ${currency.name} is ${currency.totalValueInDollars()} in Dollars")
 }
