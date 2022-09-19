@@ -32,15 +32,26 @@ sealed class AcceptedCurrency {
     fun totalValueInDollars(): Float {
         return amount * valueInDollar
     }
+
+    fun plus(otherFunds: AcceptedCurrency): AcceptedCurrency {
+        return if (this == otherFunds) {
+            amount += otherFunds.amount
+            this
+        } else {
+            val dollars = Dollar()
+            dollars.amount = this.valueInDollar + otherFunds.valueInDollar
+            dollars
+        }
+    }
 }
 enum class DayOfTheWeek(val isWeekend: Boolean = false) {
     Monday,
     Tuesday,
-    Wednesday,
-    Thursday,
+    Wednesday(true),
+    Thursday(true),
     Friday,
-    Saturday(true),
-    Sunday(true);
+    Saturday,
+    Sunday;
 
     fun daysUntil(other: DayOfTheWeek): Int {
         return if (this.ordinal < other.ordinal) {
@@ -48,6 +59,10 @@ enum class DayOfTheWeek(val isWeekend: Boolean = false) {
         } else {
             other.ordinal - this.ordinal + DayOfTheWeek.values().count()
         }
+    }
+
+    fun daysUntilNextWeekend(): Int {
+        return daysUntil(DayOfTheWeek.values().first { it.isWeekend })
     }
 
     companion object {
@@ -62,6 +77,14 @@ enum class DayOfTheWeek(val isWeekend: Boolean = false) {
             }
             val today = days.first { it.ordinal == adjustedDay }
             return today
+        }
+
+        fun byIndex(index: Int): DayOfTheWeek? {
+            return DayOfTheWeek.values().firstOrNull { it.ordinal == index }
+        }
+
+        fun byString(value: String): DayOfTheWeek? {
+            return DayOfTheWeek.values().firstOrNull { it.name == value }
         }
     }
 }
@@ -89,6 +112,7 @@ fun main() {
     val daysUntil = today.daysUntil(secondDay)
     println("It is $today. $isWeekend. There are $daysUntil days until $secondDay.")
 
+    println("days until weekend ${today.daysUntilNextWeekend()}")
     when (today) {
         DayOfTheWeek.Monday -> println("I don't care if $today's blue")
         DayOfTheWeek.Tuesday -> println("$today's gray")
