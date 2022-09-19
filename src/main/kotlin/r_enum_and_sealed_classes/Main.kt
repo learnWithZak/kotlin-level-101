@@ -106,4 +106,19 @@ fun main() {
     println("You've got some ${currency.name}")
     currency.amount = .27541f
     println("${currency.amount} of ${currency.name} is ${currency.totalValueInDollars()} in Dollars")
+
+    Downloader().downloadData("foo.com/bar",
+    progress = { state ->
+        when (state) {
+            DownloadState.Idle -> println("Download has not yet started.")
+            DownloadState.Starting -> println("Starting download...")
+            DownloadState.InProgress -> println("Downloading data...")
+            DownloadState.Error -> println("An error occurred. Download terminated.")
+            DownloadState.Success -> println("Download completed successfully.")
+        }
+    },
+    completion = { error, data ->
+        error?.let { println("Got error: ${error.message}") }
+        data?.let { println("Got list with ${data.size} items") }
+    })
 }
