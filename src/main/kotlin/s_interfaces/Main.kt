@@ -83,6 +83,30 @@ class Tank: VehicleProperties {
 
 }
 
+interface WheeledVehicle: Vehicle {
+    val numberOfWheels: Int
+    var wheelSize: Double
+}
+
+class Bike(): WheeledVehicle {
+    var paddling = false
+    var brakesApplied = false
+
+    override val numberOfWheels: Int = 2
+    override var wheelSize: Double = 622.0
+
+    override fun accelerate() {
+        paddling = true
+        brakesApplied = false
+    }
+
+    override fun stop() {
+        paddling = false
+        brakesApplied = true
+    }
+
+}
+
 fun main() {
     val car = OptionalDirection()
     car.turn()
