@@ -1,5 +1,7 @@
 package s_interfaces
 
+import kotlin.math.PI
+
 interface Vehicle {
     fun accelerate()
     fun stop()
@@ -88,7 +90,7 @@ interface WheeledVehicle: Vehicle {
     var wheelSize: Double
 }
 
-class Bike(): WheeledVehicle {
+class Bike: WheeledVehicle {
     var paddling = false
     var brakesApplied = false
 
@@ -119,4 +121,39 @@ fun main() {
     val starship = Starship()
     starship.accelerate()
     starship.stop()
+
+    /**
+     * Mini-exercises
+     */
+    val circle = Circle(2.0)
+    val square = Square(4.0)
+    val triangle = Triangle(3.0, 5.0)
+
+    val shapes = arrayOf(circle, square, triangle)
+    println(shapes.map {
+        it.area
+    })
+}
+
+/**
+ * Mini-exercises
+ */
+
+interface Area {
+    val area: Double
+}
+
+class Square(private val side: Double): Area {
+    override val area: Double
+        get() = side * side
+}
+
+class Triangle(private val base: Double, private val height: Double): Area {
+    override val area: Double
+        get() = 0.5 * base * height
+}
+
+class Circle(private val radius: Double): Area {
+    override val area: Double
+        get() = PI * radius * radius
 }
