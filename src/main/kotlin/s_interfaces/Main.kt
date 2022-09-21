@@ -181,6 +181,29 @@ fun main() {
     qe2.length = 963
 
     println(titanic < qe2)
+
+    val cat = Cat()
+    val dog = Dog()
+    val fish = Fish()
+    val bird = Bird()
+
+    val toBeFeed = arrayOf<ToBeFed>(cat, dog, fish, bird)
+    val toBeCleaned = arrayOf<ToClean>(fish, bird)
+    val canWalk = arrayOf<CanWalk>(cat, dog)
+    val toPutInATank = arrayOf<PutInTank>(fish)
+
+    for (feed in toBeFeed) {
+        feed.feedMe()
+    }
+    for (clean in toBeCleaned) {
+        clean.clean()
+    }
+    for (walk in canWalk) {
+        walk.walking()
+    }
+    for (inTank in toPutInATank) {
+        inTank.inATank()
+    }
 }
 
 /**
@@ -223,5 +246,103 @@ class Boat: SizedVehicle, Comparable<Boat> {
             length == other.length -> 0
             else -> -1
         }
+    }
+}
+
+/**
+ * Challenges
+ */
+
+interface ToBeFed {
+    fun feedMe()
+}
+interface CanFly {
+    fun flying()
+}
+interface BeCaged: ToClean {
+    fun inACage()
+}
+interface CanSwim {
+    fun swimming()
+}
+interface PutInTank: ToClean {
+    fun inATank()
+}
+interface CanWalk {
+    fun walking()
+}
+interface Exercise {
+    fun exercising()
+}
+interface ToClean { //tanks and cages
+    fun clean()
+}
+
+class Dog: ToBeFed, CanWalk, Exercise {
+    override fun feedMe() {
+        println("I'm a dog and I'm eating")
+    }
+
+    override fun walking() {
+        println("I'm a dog and  I'm walking")
+    }
+
+    override fun exercising() {
+        println("I'm a dog and doing some exercises !!")
+    }
+
+}
+
+class Cat: ToBeFed, CanWalk, Exercise {
+
+    override fun feedMe() {
+        println("I'm a cat and I'm eating")
+    }
+
+    override fun walking() {
+        println("I'm a cat and I'm walking")
+    }
+
+    override fun exercising() {
+        println("I'm a cat and doing some exercises !!")
+    }
+
+}
+
+class Fish: ToBeFed, CanSwim, PutInTank {
+    override fun feedMe() {
+        println("I'm a fish and I'm eating")
+    }
+
+    override fun swimming() {
+        println("I'm a fish and I can swim")
+    }
+
+    override fun inATank() {
+        println("I'm a fish and I'm in a tank")
+    }
+
+    override fun clean() {
+        println("Please clean my tank")
+    }
+
+}
+
+class Bird: ToBeFed, CanFly, BeCaged {
+
+    override fun feedMe() {
+        println("I'm a bird and feed me please")
+    }
+
+    override fun flying() {
+        println("I'm a bird and I'm flying")
+    }
+
+    override fun inACage() {
+        println("I'm a bird and i'm in a cage")
+    }
+
+    override fun clean() {
+        println("Please clean my cage")
     }
 }
