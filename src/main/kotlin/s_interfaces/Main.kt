@@ -159,6 +159,28 @@ fun main() {
     println(shapes.map {
         it.area
     })
+
+    /**
+     * Interface in the standard libraries
+     */
+    val cars = listOf("Ferrari", "Lambourghini", "Rolls-Royce")
+    val numbers = mapOf("Brady" to 12, "Manning" to 18, "Brees" to 9)
+
+    for (oneCar in cars) {
+        println(oneCar)
+    }
+
+    for (qb in numbers) {
+        println("${qb.key} wears ${qb.value}")
+    }
+
+    val titanic = Boat()
+    titanic.length = 883
+
+    val qe2 = Boat()
+    qe2.length = 963
+
+    println(titanic < qe2)
 }
 
 /**
@@ -182,4 +204,24 @@ class Triangle(private val base: Double, private val height: Double): Area {
 class Circle(private val radius: Double): Area {
     override val area: Double
         get() = PI * radius * radius
+}
+
+/**
+ * Comparable
+ */
+interface SizedVehicle {
+    var length: Int
+}
+
+class Boat: SizedVehicle, Comparable<Boat> {
+
+    override var length: Int = 0
+
+    override fun compareTo(other: Boat): Int {
+        return when {
+            length > other.length -> 1
+            length == other.length -> 0
+            else -> -1
+        }
+    }
 }
