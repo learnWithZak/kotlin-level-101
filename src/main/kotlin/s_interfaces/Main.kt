@@ -90,6 +90,32 @@ interface WheeledVehicle: Vehicle {
     var wheelSize: Double
 }
 
+/**
+ * implementing multiple interfaces
+ */
+interface Wheeled {
+    val numberOfWheels: Int
+    var wheelSize: Double
+}
+
+class Tricycle: Wheeled, Vehicle {
+    var peddling = false
+    var brakesApplied = false
+
+    override val numberOfWheels: Int = 3
+    override var wheelSize: Double = 100.0
+
+    override fun accelerate() {
+        peddling = true
+        brakesApplied = false
+    }
+
+    override fun stop() {
+        peddling = false
+        brakesApplied = true
+    }
+}
+
 class Bike: WheeledVehicle {
     var paddling = false
     var brakesApplied = false
