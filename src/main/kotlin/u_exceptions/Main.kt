@@ -6,6 +6,8 @@ fun main() {
     // someFunction()
     val spaceCraft = SpaceCraft()
     SpacePort.investigateSpace(spaceCraft)
+
+    println(SpacePort.testSetup(spaceCraft))
 }
 
 fun someFunction() {

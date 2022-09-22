@@ -1,5 +1,5 @@
 package u_exceptions.exception
 
-import java.lang.Exception
+import u_exceptions.SpaceCraftException
 
-class BrokenEngineException: Exception("The engine is broken. Can't take off")
+class BrokenEngineException: SpaceCraftException("The engine is broken. Can't take off")

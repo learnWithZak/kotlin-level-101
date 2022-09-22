@@ -1,5 +1,5 @@
 package u_exceptions.exception
 
-import java.lang.Exception
+import u_exceptions.SpaceCraftException
 
-class SpaceToEarthConnectionFailedException: Exception("No connection with earth. can't take off")
+class SpaceToEarthConnectionFailedException: SpaceCraftException("No connection with earth. can't take off")

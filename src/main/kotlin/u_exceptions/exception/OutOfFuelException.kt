@@ -1,5 +1,5 @@
 package u_exceptions.exception
 
-import java.lang.Exception
+import u_exceptions.SpaceCraftException
 
-class OutOfFuelException: Exception("out of fuel. Can't take off")
+class OutOfFuelException: SpaceCraftException("out of fuel. Can't take off")
