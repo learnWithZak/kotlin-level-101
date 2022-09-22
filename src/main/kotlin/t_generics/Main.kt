@@ -1,5 +1,7 @@
 package t_generics
 
+import java.lang.RuntimeException
+
 fun <T> List<T>.toBulletedList(): String {
     val separator = "\n - "
     return this.joinToString(prefix = separator, separator = separator, postfix = "\n") { "$it" }
@@ -98,6 +100,10 @@ class Mover<T: Checkable>(
         if (thingsWhichFailedCheck.isNotEmpty()) {
             println("But we need to talk about your:${thingsWhichFailedCheck.toBulletedList()}")
         }
+    }
+
+    fun fitsInTruck(itemHeight: Int): Boolean {
+        return truckHeightInInches > itemHeight
     }
 }
 
@@ -231,5 +237,129 @@ fun main() {
         val intComparable: Comparable<Int> = comparator
         intComparable.compareTo(int)
         // intComparable.compareTo(float)
+    }
+
+    /**
+     * Challenges
+     */
+
+    val classmates = listOf(
+        Classmate("Ralph", "Toto"),
+        Classmate("Jonny", "Hallyday"),
+        Classmate("Sherri", "Mackleberry"),
+        Classmate("Terri", "Manes")
+    )
+
+    println("Classmates:")
+    classmates.printNames()
+
+    val family = listOf(
+        Relative("Homer", "Simpson", "Father"),
+        Relative("Marge", "Simpson", "Mother"),
+        Relative("Bart", "Simpson", "Brother"),
+        Relative("Maggie", "Simpson", "Sister")
+    )
+    println("Family:")
+    family.printNames()
+
+    val vehicles = listOf(
+        Vehicle("Yamaha", "Vino", 40),
+        Vehicle("Toyota", "Corolla", 58),
+        Vehicle("Freightliner", "Cascadia", 150)
+    )
+
+    val vehicleMover = Mover(vehicles)
+    vehicles.forEach {
+        it.heightCheckLambda = vehicleMover::fitsInTruck
+    }
+    vehicleMover.moveEverythingToTruck(ShippingContainer())
+    vehicleMover.moveEverythingIntoNewPlace()
+    vehicleMover.finishMove()
+
+    println("-------move all--------")
+    var items = mutableListOf<Checkable>()
+    items.addAll(cheapThings)
+    items.addAll(breakableThings)
+    items.addAll(vehicles)
+    val everythingMover = Mover(items, 200)
+    vehicles.forEach { it.heightCheckLambda = everythingMover::fitsInTruck }
+
+    everythingMover.moveEverythingToTruck(null)
+    everythingMover.moveEverythingIntoNewPlace()
+    everythingMover.finishMove()
+}
+
+/**
+ * Challenges
+ */
+
+interface PersonWithName {
+    val firstName: String
+    val lastName: String
+}
+
+class Classmate(override val firstName: String, override val lastName: String): PersonWithName
+
+class Relative(override val firstName: String, override val lastName: String, val relationship: String): PersonWithName {
+
+    override fun toString(): String {
+        return "$relationship: $firstName $lastName"
+    }
+}
+
+fun <T: PersonWithName> List<T>.printNames() {
+    forEach {
+        println("${it.firstName} ${it.lastName}")
+    }
+}
+
+class Vehicle(val brandName: String, val modelName: String, val heightInInches: Int): Checkable {
+    var heightCheckLambda: ((Int) -> Boolean)? = null
+
+    override fun checkIsOk(): Boolean {
+        heightCheckLambda?.let {
+            return it.invoke(heightInInches)
+        }
+        throw RuntimeException("You must provide a height check function!")
+    }
+
+    override fun toString(): String {
+        return "$brandName $modelName"
+    }
+}
+
+class ShippingContainer: Container<Vehicle> {
+
+    var currentVehicle: Vehicle? = null
+
+    override fun canAddAnotherItem(): Boolean {
+        return currentVehicle == null
+    }
+
+    override fun canRemoveAnotherItem(): Boolean {
+        return currentVehicle != null
+    }
+
+    override fun removeItem(): Vehicle {
+        //todo: that cast mmm!!!
+        val itemToReturn = currentVehicle as Vehicle
+        currentVehicle = null
+        return itemToReturn
+    }
+
+    override fun getAnother(): Container<Vehicle> {
+        return ShippingContainer()
+    }
+
+    override fun contents(): List<Vehicle> {
+        val list = mutableListOf<Vehicle>()
+        currentVehicle?.let {
+            list.add(it)
+        }
+        return list
+    }
+
+    override fun addItem(item: Vehicle) {
+        this.currentVehicle = item
     }
 }
