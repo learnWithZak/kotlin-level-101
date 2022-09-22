@@ -3,7 +3,9 @@ package u_exceptions
 import java.lang.Exception
 
 fun main() {
-    someFunction()
+    // someFunction()
+    val spaceCraft = SpaceCraft()
+    SpacePort.investigateSpace(spaceCraft)
 }
 
 fun someFunction() {
