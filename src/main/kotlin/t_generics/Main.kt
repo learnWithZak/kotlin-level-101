@@ -215,4 +215,21 @@ fun main() {
     television.smash()
     expensiveMover.moveEverythingIntoNewPlace()
     expensiveMover.finishMove()
+
+    val ints = listOf(1, 2, 3)
+    val numbers: List<Number> = ints
+    // val moreInts: List<Int> = numbers
+
+    val mutableInts = mutableListOf(1,2,3)
+    // val mutableNumbers: MutableList<Number> = mutableInts
+
+    fun compare(comparator: Comparable<Number>) {
+        val int: Int = 1
+        comparator.compareTo(int)
+        val float: Float = 1.0F
+        comparator.compareTo(float)
+        val intComparable: Comparable<Int> = comparator
+        intComparable.compareTo(int)
+        // intComparable.compareTo(float)
+    }
 }
