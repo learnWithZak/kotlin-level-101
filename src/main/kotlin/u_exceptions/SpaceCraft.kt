@@ -35,13 +35,17 @@ class SpaceCraft {
         isInSpace = true
     }
 
-    private fun sendMessageToEarth(message: String) {
+    fun sendMessageToEarth(message: String) {
         println("Spacecraft to Earth: $message")
     }
 }
 
 object SpacePort {
     fun investigateSpace(spaceCraft: SpaceCraft) {
-        spaceCraft.launch()
+        try {
+            spaceCraft.launch()
+        } catch (exception: Exception) {
+            spaceCraft.sendMessageToEarth(exception.localizedMessage)
+        }
     }
 }
