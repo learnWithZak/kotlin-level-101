@@ -21,6 +21,8 @@ fun main() {
     sum(5, 19)
     sum(1, 2)
 
+    val string = "Hello!"
+    string.print()
 }
 
 /**
@@ -59,3 +61,9 @@ val sum = { a: Int, b: Int ->
     result = a + b
     println(result)
 }
+
+/**
+ * Extension function
+ */
+
+fun String.print() = System.out.println(this)
