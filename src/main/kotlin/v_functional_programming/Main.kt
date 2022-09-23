@@ -17,8 +17,15 @@ fun main() {
     Battlefield.beginBattle(firstRobot, secondRobot) {
         it.report("Win!")
     }
+
+    sum(5, 19)
+    sum(1, 2)
+
 }
 
+/**
+ * Lambdas
+ */
 fun onBattleFinished(winner: Robot) {
     winner.report("Win!")
 }
@@ -41,4 +48,14 @@ val pow2: (Int, Int) -> Double = { base, exponent ->
 
 val root: (Int) -> Double = {
     sqrt(it.toDouble())
+}
+
+/**
+ * Closures
+ */
+
+var result = 0
+val sum = { a: Int, b: Int ->
+    result = a + b
+    println(result)
 }
