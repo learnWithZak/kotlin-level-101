@@ -1,13 +1,22 @@
 package v_functional_programming
 
 import java.util.Random
+import kotlin.math.pow
+import kotlin.math.sqrt
 
 fun main() {
     val firstRobot = Robot("Experimental Space Navigation Droid")
     val secondRobot = Robot("Extra-Terrestrial Air Safety Droid")
 
     Battlefield.beginBattle(firstRobot, secondRobot, ::onBattleFinished)
+    println(pow(2, 4))
 
+    val onBattleFinished = { winner: Robot -> winner.report("Win!")}
+    Battlefield.beginBattle(firstRobot, secondRobot, onBattleFinished)
+
+    Battlefield.beginBattle(firstRobot, secondRobot) {
+        it.report("Win!")
+    }
 }
 
 fun onBattleFinished(winner: Robot) {
@@ -20,4 +29,16 @@ fun someFunction(): () -> Int {
 
 fun anotherFunction(): Int {
     return Random().nextInt()
+}
+
+val pow = { base: Int, exponent: Int ->
+    base.toDouble().pow(exponent.toDouble())
+}
+
+val pow2: (Int, Int) -> Double = { base, exponent ->
+    base.toDouble().pow(exponent.toDouble())
+}
+
+val root: (Int) -> Double = {
+    sqrt(it.toDouble())
 }
