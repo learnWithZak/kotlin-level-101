@@ -1,11 +1,12 @@
 package v_functional_programming
 
 object Battlefield {
-    fun beginBattle(firstRobot: Robot, secondRobot: Robot) {
+    fun beginBattle(firstRobot: Robot, secondRobot: Robot, onBattleFinished: (Robot) -> Unit) {
         var winner: Robot? = null
         battle(firstRobot, secondRobot)
 
         winner = if (firstRobot.isAlive) firstRobot else secondRobot
+        onBattleFinished.invoke(winner)
     }
 
     private fun battle(firstRobot: Robot, secondRobot: Robot) {
