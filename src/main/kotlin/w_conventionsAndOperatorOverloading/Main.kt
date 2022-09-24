@@ -24,4 +24,29 @@ fun main() {
     var Bernadette = Employee(company, "Bernadette", 66_000)
     var Mark = Employee(company, "Mark", 66_000)
 
+    ++Julia
+    println(Julia.salary)
+
+    --Peter
+    println(Peter.salary)
+
+    Mark += 2500
+    Alice -= 2000
+
+    company += developmentDepartment
+    company += qaDepartment
+    company += hrDepartment
+
+    developmentDepartment += Julia
+    developmentDepartment += John
+    developmentDepartment += Peter
+
+    qaDepartment += Sandra
+    qaDepartment += Thomas
+    qaDepartment += Alice
+
+    hrDepartment += Bernadette
+    hrDepartment += Mark
+
+    qaDepartment -= Thomas
 }
