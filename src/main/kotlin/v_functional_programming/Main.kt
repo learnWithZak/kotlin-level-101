@@ -37,6 +37,25 @@ fun main() {
         robot.report("Win!")
     })
 
+    /**
+     * collections standard library
+     */
+    val participants = arrayListOf(
+        Robot("Extra-Terrestrial Neutralization Bot"),
+        Robot("Generic Evasion Droid"),
+        Robot("Self-Reliant War Management Device"),
+        Robot("Advanced Nullification Android"),
+        Robot("Rational Network Defense Droid"),
+        Robot("Motorized Shepherd Cyborg"),
+        Robot("Reactive Algorithm Entity"),
+        Robot("Ultimate Safety Guard Golem"),
+        Robot("Nuclear Processor Machine"),
+        Robot("Preliminary Space Navigation Machine")
+    )
+
+    val topCategory = participants.filter { it.strength > 80 }
+        .take(3)
+        .sortedBy { it.name }
 }
 
 /**
