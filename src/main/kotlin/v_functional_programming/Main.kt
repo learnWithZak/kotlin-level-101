@@ -81,3 +81,24 @@ val sum = { a: Int, b: Int ->
  */
 
 fun String.print() = System.out.println(this)
+
+/**
+ * Returning from lambdas
+ */
+fun calculateEven() {
+    var result = 0
+    (0..20).forEach loop@ {
+        if (it % 3 == 0) return@loop
+        if (it % 2 == 0) result += it
+    }
+    println(result)
+}
+
+fun calculateEven2() {
+    var result = 0
+    (0..20).forEach(fun(value: Int) {
+        if(value % 3 == 0) return
+        if(value % 2 == 0) result += value
+    })
+    println(result)
+}
