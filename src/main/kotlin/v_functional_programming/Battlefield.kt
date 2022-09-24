@@ -1,7 +1,7 @@
 package v_functional_programming
 
 object Battlefield {
-    fun beginBattle(firstRobot: Robot, secondRobot: Robot, onBattleFinished: Robot.() -> Unit) {
+    inline fun beginBattle(firstRobot: Robot, secondRobot: Robot, onBattleFinished: Robot.() -> Unit) {
         var winner: Robot? = null
         battle(firstRobot, secondRobot)
 
@@ -9,7 +9,7 @@ object Battlefield {
         winner.onBattleFinished()
     }
 
-    private fun battle(firstRobot: Robot, secondRobot: Robot) {
+    fun battle(firstRobot: Robot, secondRobot: Robot) {
         firstRobot.attack(secondRobot)
         if (secondRobot.isAlive.not()) {
             return

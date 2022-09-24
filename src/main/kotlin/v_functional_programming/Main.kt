@@ -102,3 +102,24 @@ fun calculateEven2() {
     })
     println(result)
 }
+
+/**
+ * Inline functions
+ */
+
+inline fun someFunction(
+    inlinedLambda: () -> Unit,
+    noinline nonInlinedLambda: () -> Unit
+) {
+    //...
+}
+
+inline fun someFunction(crossinline body: () -> Unit) {
+    yetAnotherFunction {
+        body()
+    }
+}
+
+fun yetAnotherFunction(body: () -> Unit) {
+    //...
+}
