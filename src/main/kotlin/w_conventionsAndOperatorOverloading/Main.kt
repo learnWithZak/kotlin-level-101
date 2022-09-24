@@ -50,10 +50,6 @@ fun main() {
 
     qaDepartment -= Thomas
 
-    /**
-     * Handling collections
-     */
-
     val firstEmployee = qaDepartment[0]
     qaDepartment[0]?.plusAssign(1000)
 
@@ -62,4 +58,11 @@ fun main() {
     if (Thomas !in qaDepartment) {
         println("${Thomas.name} no longer works here")
     }
+
+    Julia > Mark
+    developmentDepartment.forEach {
+        println("${it.name} is a nerd")
+    }
+
+    print((Julia..Mark).joinToString { it.name })
 }

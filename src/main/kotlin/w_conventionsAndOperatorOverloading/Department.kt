@@ -1,7 +1,7 @@
 package w_conventionsAndOperatorOverloading
 
-class Department(val name: String) {
-    private val employees = arrayListOf<Employee>()
+class Department(val name: String): Iterable<Employee> {
+    val employees = arrayListOf<Employee>()
 
     operator fun plusAssign(employee: Employee) {
         employees.add(employee)
@@ -25,5 +25,9 @@ class Department(val name: String) {
 
     operator fun contains(employee: Employee): Boolean {
         return employees.contains(employee)
+    }
+
+    override fun iterator(): Iterator<Employee> {
+        return employees.iterator()
     }
 }
