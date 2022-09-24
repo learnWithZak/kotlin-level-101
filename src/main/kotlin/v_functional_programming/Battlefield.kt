@@ -9,7 +9,7 @@ object Battlefield {
         winner.onBattleFinished()
     }
 
-    fun battle(firstRobot: Robot, secondRobot: Robot) {
+    tailrec fun battle(firstRobot: Robot, secondRobot: Robot) {
         firstRobot.attack(secondRobot)
         if (secondRobot.isAlive.not()) {
             return
