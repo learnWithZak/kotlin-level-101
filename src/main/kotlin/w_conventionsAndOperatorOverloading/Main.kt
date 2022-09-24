@@ -1,5 +1,7 @@
 package w_conventionsAndOperatorOverloading
 
+import kotlin.reflect.KProperty
+
 fun main() {
 
     /**
@@ -65,4 +67,29 @@ fun main() {
     }
 
     print((Julia..Mark).joinToString { it.name })
+
+    /**
+     * Delegated properties as conventions
+     */
+    class NameDelegate {
+        operator fun getValue(
+            thisRef: Any?,
+            property: KProperty<*>
+        ): String {
+            // return existing value
+            return "rrtoto"
+        }
+        operator fun setValue(
+            thisRef: Any?,
+            property: KProperty<*>,
+            value: String
+        ) {
+
+        }
+    }
+
+    println("")
+    var name: String by NameDelegate()
+    name = "toto"
+    println(name)
 }
