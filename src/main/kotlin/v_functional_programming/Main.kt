@@ -56,6 +56,25 @@ fun main() {
     val topCategory = participants.filter { it.strength > 80 }
         .take(3)
         .sortedBy { it.name }
+
+
+    /**
+     * Sequences
+     */
+
+    val random = Random()
+    val sequence = generateSequence {
+        random.nextInt(100)
+    }
+
+    sequence.take(15)
+        .sorted()
+        .forEach { println(it) }
+
+    val factorial = generateSequence(1 to 1) {
+        it.first + 1 to it.second * (it.first + 1)
+    }
+    println(factorial.take(10).map { it.second }.last())
 }
 
 /**
