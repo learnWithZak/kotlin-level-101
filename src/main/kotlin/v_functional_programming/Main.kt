@@ -15,7 +15,7 @@ fun main() {
     Battlefield.beginBattle(firstRobot, secondRobot, onBattleFinished)
 
     Battlefield.beginBattle(firstRobot, secondRobot) {
-        it.report("Win!")
+        report("Win!")
     }
 
     sum(5, 19)
@@ -23,6 +23,20 @@ fun main() {
 
     val string = "Hello!"
     string.print()
+
+    /**
+     * Anonymous functions
+     */
+
+    val reportOnWin = fun(robot: Robot) {
+        robot.report("Win!")
+    }
+
+    Battlefield.beginBattle(firstRobot, secondRobot, reportOnWin)
+    Battlefield.beginBattle(firstRobot, secondRobot, fun(robot) {
+        robot.report("Win!")
+    })
+
 }
 
 /**
