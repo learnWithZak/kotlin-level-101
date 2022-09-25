@@ -52,3 +52,28 @@ fun File.printFolderInfo() {
 }
 
 currentFolder().printFolderInfo()
+
+fun valueFromArgsForPrefix(prefix: String): String? {
+    val arg = args.firstOrNull { it.startsWith(prefix) }
+
+    if (arg == null) return null
+
+    val pieces = arg.split("=")
+    return if (pieces.size == 2) {
+        pieces[1]
+    } else {
+        null
+    }
+}
+
+val folderPrefix = "folder="
+val folderValue = valueFromArgsForPrefix(folderPrefix)
+
+if (folderValue != null) {
+    val folder = File(folderValue).absoluteFile
+    folder.printFolderInfo()
+} else {
+    println("No path provided, printing working directory info")
+    currentFolder().printFolderInfo()
+}
+
