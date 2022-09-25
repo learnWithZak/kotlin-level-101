@@ -12,4 +12,10 @@ fun main() {
     (0..10).forEach {
         println("Message $it from the ${Thread.currentThread().name}")
     }
+
+    /**
+     * Coroutines
+     */
+
+    BuildingYard.startProject("Smart house", 20)
 }
